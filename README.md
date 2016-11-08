@@ -2,11 +2,13 @@
 
 Tools to create new play_motion motions.
 
-[capture gui](capture_gui_ss.png)
+![capture gui](capture_gui_ss.png)
 
-[joint sliders](chip_joint_sliders.png)
+![joint sliders](chip_joint_sliders.png)
 
 # Workflow
+
+The following instructions are related to CBA Innovation lab REEM (CHIP), but should apply on any REEM.
 
 ## Create a workspace for the package
 
