@@ -18,7 +18,7 @@ cd movements_ws
 mkdir src
 cd src
 catkin_init_workspace
-git clone https://github.com/pal-robotics/reem_movements_creator
+git clone https://github.com/uts-magic-lab/reem_movements_creator
 cd ..
 catkin_make
 source devel/setup.bash
