@@ -65,10 +65,10 @@ class Main(QtGui.QMainWindow):
                                        queue_size=1)
         rospy.loginfo("Subscribed to: " + str(self.js_sub.resolved_name))
 
-        self.arm_right_pub = rospy.Publisher('/arm_right_controller/command',
+        self.arm_right_pub = rospy.Publisher('/right_arm_controller/command',
                                              JointTrajectory,
                                              queue_size=1)
-        self.arm_left_pub = rospy.Publisher('/arm_left_controller/command',
+        self.arm_left_pub = rospy.Publisher('/left_arm_controller/command',
                                             JointTrajectory,
                                             queue_size=1)
         self.head_pub = rospy.Publisher('/head_controller/command',
@@ -79,11 +79,11 @@ class Main(QtGui.QMainWindow):
                                          JointTrajectory,
                                          queue_size=1)
 
-        self.hand_right_pub = rospy.Publisher('/hand_right_controller/command',
+        self.hand_right_pub = rospy.Publisher('/right_hand_controller/command',
                                               JointTrajectory,
                                               queue_size=1)
 
-        self.hand_left_pub = rospy.Publisher('/hand_left_controller/command',
+        self.hand_left_pub = rospy.Publisher('/left_hand_controller/command',
                                              JointTrajectory,
                                              queue_size=1)
 
@@ -216,6 +216,11 @@ class Main(QtGui.QMainWindow):
         # To remove _1 from head[_1]_joint
         if group[-1] in ['1', '2', '3', '4', '5', '6', '7']:
             group = group[:-2]
+        if 'hand' in group:
+            if 'left' in group:
+                return self.hand_left_pub
+            if 'right' in group:
+                return self.hand_right_pub
         return self.__getattribute__(group + '_pub')
 
     def create_slider(self, joint_name, min_limit, max_limit):
@@ -298,6 +303,7 @@ class Main(QtGui.QMainWindow):
             return
         goal = self.create_goal_for(joint_name, new_value)
         pub = self.get_pub_for(joint_name)
+        print "getting pub for " + str(joint_name)
         pub.publish(goal)
 
     def add_cb_to_class_by_joint_name(self, joint_name, type_cb):
