@@ -47,11 +47,17 @@ wlan0     Link encap:Ethernet  HWaddr 00:15:00:e8:fc:83
           RX bytes:22317366 (22.3 MB)  TX bytes:3218074 (3.2 MB)
 ```
 
-And settle your `ROS_IP` variable:
+And settle your `ROS_IP` variable (if you aren't in the VPN):
 
 ```bash
 export ROS_IP=10.68.0.111
 ``` 
+
+Also export `ROS_MASTER_URI` so you actually use the real robot:
+
+```bash
+export ROS_MASTER_URI=http://reemh3-3c:11311
+```
 
 ## Move joints with sliders
 
